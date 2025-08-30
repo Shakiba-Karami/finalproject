@@ -1,4 +1,4 @@
-export const initialState = {
+/*export const initialState = {
     data : [],
     loading : false,
     error: null
@@ -22,4 +22,6 @@ export const ListReducer = (state, action) => {
         default : 
             return state
     }
-}
+}*/
+import { createSlice } from 'reduxjs/toolkit'
+
