@@ -14,16 +14,18 @@ page_count: 25,
 total_count: 250
 }}*/
 import { useForm } from 'react-hook-form'
-import { useContext } from 'react';
+// import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import { ListContext } from '@/context/ListContext'
+// import { ListContext } from '@/context/ListContext'
 import Fetch from '@/components/Fetch'
 
 const Search = ({url}) => {
     const {register, handleSubmit, watch} = useForm();
-    const {dispatch} = useContext(ListContext);
+    // const {dispatch} = useContext(ListContext);
     const navigate = useNavigate();
+    const dispatch = useDispatch()
     
     const onSubmit = (data) => {
         // const nameQuery = watch('nameQuery');

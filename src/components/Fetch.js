@@ -1,11 +1,12 @@
+import { fetchLoading, fetchDone, fetchFailed } from '@/features/listSlice'
 
 const Fetch = (url, dispatch) => {
-    dispatch ({type : 'fetchLoading'} )
+    dispatch (fetchLoading() )
     fetch(url)
         .then((response) => {
             if (!response.ok)
                 throw new Error(`oops ${response.status}`);
-            console.log("response of our fetch is an object as",response);
+                console.log("response of our fetch is an object as",response);
             return response.json();            
         })
             .then((result) => {
@@ -14,10 +15,10 @@ const Fetch = (url, dispatch) => {
                 }
                 console.log("we make json of our response & result will be as", result);
                 console.log(result.data)
-                dispatch({type: 'fetchDone', payload: result.data})                 
+                dispatch(fetchDone(result.data))                 
             })
                 .catch((error)=> {
-                   dispatch({type: 'fetchFailed', payload : error}) 
+                   dispatch(fetchFailed(error.message)) 
             }) 
 }
 
