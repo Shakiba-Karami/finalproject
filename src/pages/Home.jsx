@@ -1,11 +1,11 @@
 //https://moviesapi.codingfront.dev/
 import Search from '@/components/Search'
-import GenresList from '@/components/general/GenresList';
+import GenresList from '@/components/GenresList';
 
 const Home = () => {
         console.log("inside Home")
     return (<>
-        inside Home
+    <div className="">IAMDB</div>    
         <Search/>
         <GenresList/>
     </> 
