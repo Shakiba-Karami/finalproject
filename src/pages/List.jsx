@@ -1,48 +1,55 @@
-/*list by genre https://moviesapi.codingfront.dev/api/v1/genres/{genre_name}/movies?page={page}
-{data: [
-{id: 1,
-title: "The Shawshank Redemption",
-poster: "https://moviesapi.codingfront.dev/images/tt0111161.jpg",
-genres: [
-"Crime",
-"Drama"
-],
-images: [
-"https://moviesapi.codingfront.dev/images/tt0111161_backdrop.jpg"
-]
-},...*/
-// import { useContext } from "react"
 
-// import { ListContext } from "../context/ListContext"
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import Search from "@/components/Search";
+import DispatchMovie from "@/components/DispatchMovie";
+import useSearchByGenre from "@/hooks/SearchByGenre";
 
 
 
 const List = () => {
-    // const { list } = useContext(ListContext)
-    
-    // if (list.loading) return <h2>Loading...</h2>
-    // if (list.error) return <h2>Error: {list.error.message}</h2>
-    // if (!list.data || list.data.length === 0) return <h2>No results</h2>
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     const { data, loading, error } = useSelector(state => state.list)
+    const { data : movieData, loading : movieLoading, error : movieError } = useSelector((state) => state.movie)
+    
+    const SearchByGenre = useSearchByGenre()
+    
 
-    if (loading) return <p>Loading...</p>
-    if (error) return <p>Error: {error}</p>
-    if (!data || data.length === 0) return <p>No results</p>
-
+    const handleClick = (movieId) => {
+        dispatch(DispatchMovie(movieId))
+        navigate('/item')
+    }
 
     return (
-        <><h1>inside List</h1>
+        <>
+        <Search/>
+        {!loading && !error && (!data || data.length === 0) && <p>Ahhh... Where am I? Am I dead?</p>}
+        {loading && <p>Loading list Data ...</p>}
+        {error && <p>Error: {error}</p>}
+        
+        {!loading && !error && data && data.length > 0 && (<>
+        <h1>Result</h1>
+        <p>for : </p>
         <ul>{data.map((movieItem) => (
-                <li key={movieItem.id}>
-                    <img src= {movieItem.poster} alt={movieItem.title} width = {137}/>
+                <li key={movieItem.id} onClick={()=>handleClick(movieItem.id)}>
+                    <img src={movieItem.poster} alt={movieItem.title} width = {137} height={137}/>
                     <div>
                     {movieItem.title}
                     </div>
+                    <ul> {movieItem.genres.map((genre, index) => (
+                        <li key={genre} onClick={() => SearchByGenre(genre)}>
+                            {genre}{index < movieItem.genres.length - 1 ? ', ' : ''}
+                        </li>
+                    ))}</ul>
+                    <div>{movieData.year},{movieData.country},star{movieData.imdb_rating}</div>
                 </li>
                 ))
             }
-        </ul>
+        </ul></>)}
         </>
     )
 }

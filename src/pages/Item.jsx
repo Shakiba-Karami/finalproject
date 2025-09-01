@@ -27,11 +27,35 @@ images: [
 "https://moviesapi.codingfront.dev/images/tt0111161_backdrop.jpg"
 ]
 }*/
-const Item = () => {
-    return (<>
-        inside Item
-        {console.log("inside Home")}
+import { useSelector } from "react-redux";
 
+import useSearchByGenre from "@/hooks/SearchByGenre";
+
+
+
+
+
+
+const Item = () => {
+    const { data, loading, error } = useSelector((state) => state.movie)
+    const SearchByGenre = useSearchByGenre()
+
+
+
+    return (<>
+        <div>Movie Details</div>
+        {loading && <p>Loading Movie Data ...</p>}
+        {error && <p>Error: {error}</p>}
+        {data && (<>
+            <h1>{data.title}</h1>
+            <ul>{data.genres.map((genre, index)=> <li 
+            onClick = {()=>{SearchByGenre(genre)}} 
+            >{genre}{index < data.genres.length - 1 ? ', ' : ''}</li>)}</ul>
+            </>
+        )
+    }
+
+    {!loading && !error && !data && <p>Ahhh... Where am I? Am I dead?</p>}
     </> 
     )
 };

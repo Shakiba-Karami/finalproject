@@ -1,29 +1,11 @@
-/* https://moviesapi.codingfront.dev/api/v1/movies?q={name}&page={page}
-{data: [
-{id: 1,
-title: "The Shawshank Redemption",
-poster: "https://moviesapi.codingfront.dev/images/tt0111161.jpg",
-genres: [
-"Crime",
-"Drama"
-],
-...,
-metadata: {current_page: 1,
-per_page: 2,
-page_count: 25,
-total_count: 250
-}}*/
 import { useForm } from 'react-hook-form'
-// import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-// import { ListContext } from '@/context/ListContext'
-import Fetch from '@/components/Fetch'
+import DispatchList from '@/components/DispatchList'
 
 const Search = ({url}) => {
     const {register, handleSubmit, watch} = useForm();
-    // const {dispatch} = useContext(ListContext);
     const navigate = useNavigate();
     const dispatch = useDispatch()
     
@@ -31,7 +13,7 @@ const Search = ({url}) => {
         // const nameQuery = watch('nameQuery');
         const page = 1;
         const url = `https://moviesapi.codingfront.dev/api/v1/movies?q=${data.nameQuery}&page=${page}`
-        Fetch(url, dispatch);
+        dispatch(DispatchList(url));
         navigate('/list')
         
     }
