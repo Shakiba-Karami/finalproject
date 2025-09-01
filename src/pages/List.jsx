@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -17,11 +18,17 @@ const List = () => {
     const { data : movieData, loading : movieLoading, error : movieError } = useSelector((state) => state.movie)
     
     const SearchByGenre = useSearchByGenre()
-    
+    useEffect = (()=>{
+        if (data && data.length > 0) {
+            data.forEach((movie)=> {
+                dispatch(DispatchMovie(movie.id))
+            })
+        }
+
+    },[data, dispatch])
 
     const handleClick = (movieId) => {
-        dispatch(DispatchMovie(movieId))
-        navigate('/item')
+        navigate(`/item/${movieId}`)
     }
 
     return (
@@ -45,7 +52,7 @@ const List = () => {
                             {genre}{index < movieItem.genres.length - 1 ? ', ' : ''}
                         </li>
                     ))}</ul>
-                    <div>{movieData.year},{movieData.country},star{movieData.imdb_rating}</div>
+                    <div>{movieItem.year},{movieItem.country},star{movieItem.imdb_rating}</div>
                 </li>
                 ))
             }
