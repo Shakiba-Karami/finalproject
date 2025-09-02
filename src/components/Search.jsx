@@ -40,7 +40,7 @@ const Search = ({url}) => {
             <rect width="24" height="24" fill="white"/>
             </clipPath>
             </defs>
-        </svg>
+        cd</svg>
 
     </form>
     </>
