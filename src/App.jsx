@@ -9,13 +9,14 @@ import Home from '@/pages/Home';
 import List from '@/pages/List';
 import NotFound from '@/pages/NotFound';
 import Item from '@/pages/Item';
-// import './App.css'
+import './App.css';
 
 function App() {
 
   return (
     <>
     <Provider store = {store}>
+    <div className='px-8 py-3'>
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/list' element = {<List />}/>
@@ -23,6 +24,7 @@ function App() {
         <Route path='/item/:movieId' element = {<Item />}/>
         <Route path='*' element = {<NotFound />}/>
       </Routes>
+    </div>
     </Provider>
     </>
   )
