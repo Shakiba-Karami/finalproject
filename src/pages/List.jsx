@@ -55,7 +55,7 @@ const List = () => {
 
     return (
         <>
-        <div className='px-8 py-3'>
+        <div className='px-3 py-8'>
         <Header/>
         <Search/>
         {!loading && !error && (!data || data.length === 0) && <p>Ahhh... Where am I? Am I dead?</p>}
@@ -63,7 +63,7 @@ const List = () => {
         {error && <p>Error: {error}</p>}
         
         {!loading && !error && data && data.length > 0 && (<>
-        <ul className="py-8 flex flex-col gap-5">{data.map((movieItem) => (
+        <ul className="flex flex-col gap-5">{data.map((movieItem) => (
                 <li className="flex gap-5 w-full pb-5 border-b border-b-[var(--interactive-color)] justify-start cursor-pointer" key={movieItem.id} onClick={()=>navigate(`/item/${movieItem.id}`)}>
                     <img className="rounded-xl w-[122px] h-[122px] shrink-0" src={movieItem.poster} alt={movieItem.title}/>
                     <div className="grow flex-col justify-between">

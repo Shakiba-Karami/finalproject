@@ -25,7 +25,7 @@ const GenresList = () => {
     
     const showedGenres = genres.slice(0, genresCount)
 
-    return (<ul className="flex flex-wrap justify-center gap-2 text-xs my-8 px-5">{
+    return (<ul className="w-full flex flex-wrap justify-center gap-2 text-xs px-5">{
             showedGenres.map((genreItem) => (
                     <li className='px-[12px] py-[6px] bg-[var(--interactive-color)] rounded-lg cursor-pointer' key = {genreItem.id} onClick={()=> SearchByGenre(genreItem.name)}>
                         {genreItem.name}</li>))

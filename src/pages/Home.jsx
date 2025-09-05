@@ -6,13 +6,15 @@ import SignIn from '../components/general/SignIn';
 
 const Home = () => {
         console.log("inside Home")
-    return (<><div className=' px-8 py-3 text-center'>
+    return (<>
         <Header/>
         <SignIn/>
-         <div className='text-[100px] font-black my-8'>IAMDB</div> 
-        <Search/>
-        <GenresList/>
-    </div>
+        <div className='px-3 py-8 text-center flex flex-col items-center justify-center h-screen my-auto'>
+                <div className='text-[100px]/28 font-black w-full'>IAMDB</div> 
+                <Search/>
+                <GenresList/>
+        </div>
+
     </> 
     )
 };
