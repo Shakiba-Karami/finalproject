@@ -34,6 +34,8 @@ import { nanoid } from "@reduxjs/toolkit";
 
 import useSearchByGenre from "@/hooks/SearchByGenre";
 import DispatchMovie from "@/components/DispatchMovie";
+import BackButton from "@/components/general/Backbutton";
+import Header from "@/components/general/header";
 
 const Item = () => {
     const { data, loading, error } = useSelector((state) => state.movie);
@@ -51,45 +53,62 @@ const Item = () => {
     }, [movieId, movie]);
 
     return (<>
+    <Header/>
         {loading && <p>Loading Movie Data ...</p>}
         {error && <p>Error: {error}</p>}
         {movie && (<>
-            <img src = {movie.images[0]} alt={movie.title}/>
-            <button onClick = {()=> navigate(-1)}>
-                <svg width="11" height="20" viewBox="0 0 11 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.30832 20C9.19865 20.0006 9.08993 19.9796 8.9884 19.9381C8.88686 19.8967 8.79452 19.8356 8.71665 19.7583L1.90832 12.95C1.52029 12.5629 1.21244 12.1031 1.00238 11.5969C0.792327 11.0907 0.684204 10.5481 0.684204 9.99999C0.684204 9.45193 0.792327 8.90925 1.00238 8.40304C1.21244 7.89683 1.52029 7.43704 1.90832 7.04999L8.71665 0.241658C8.79435 0.16396 8.88659 0.102326 8.98811 0.0602753C9.08963 0.018225 9.19844 -0.00341797 9.30832 -0.00341797C9.4182 -0.00341797 9.52701 0.018225 9.62853 0.0602753C9.73004 0.102326 9.82229 0.16396 9.89998 0.241658C9.97768 0.319357 10.0393 0.411599 10.0814 0.513117C10.1234 0.614636 10.1451 0.723442 10.1451 0.833325C10.1451 0.943208 10.1234 1.05201 10.0814 1.15353C10.0393 1.25505 9.97768 1.34729 9.89998 1.42499L3.09165 8.23333C2.62348 8.70208 2.36052 9.33749 2.36052 9.99999C2.36052 10.6625 2.62348 11.2979 3.09165 11.7667L9.89998 18.575C9.97809 18.6525 10.0401 18.7446 10.0824 18.8462C10.1247 18.9477 10.1465 19.0566 10.1465 19.1667C10.1465 19.2767 10.1247 19.3856 10.0824 19.4871C10.0401 19.5887 9.97809 19.6809 9.89998 19.7583C9.82212 19.8356 9.72977 19.8967 9.62824 19.9381C9.52671 19.9796 9.41799 20.0006 9.30832 20Z" fill="white"/>
-                </svg>
-            </button>
-            <img src = {movie.poster} alt={movie.title} height={637}/>
-            <h1>{movie.title}</h1>
-            <ul>{movie.genres.map((genre, index)=> <li key={nanoid()}
-            onClick = {()=>{SearchByGenre(genre)}} 
-            >{genre}{index < movie.genres.length - 1 ? ', ' : ''}</li>)}</ul>
-            <div>{movie.plot}</div>
-            <div>{movie.rated}</div>
-            <div>{movie.year}</div>
-            <div>{movie.runtime}</div>
-            <div>{movie.imdb_rating}</div>
-            <div>{movie.imdb_votes} ratings on IMDB</div>
-            <div>{movie.ratings && 
-                JSON.parse(movie.ratings)[1]?.Value} on {movie.ratings 
-                && JSON.parse(movie.ratings)[1]?.Source}
+        <div className="relative w-full">
+            <img src={movie.images[0]} className="w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--bg-color)]/100 to-60%">
+            <div className="pt-44 px-3">
+                <h1 className="text-5xl font-bold">{movie.title}</h1>
+                <ul className="text-xs/normal font-light opacity-40 flex items-start gap-0.5">{movie.genres.map((genre, index)=> <li className="cursor-pointer" key={nanoid()}
+                    onClick = {()=>{SearchByGenre(genre)}} 
+                    >{genre}{index < movie.genres.length - 1 ? ', ' : ''}</li>)}</ul>
+                <div className="opacity-60 text-sm/6 py-4.5">{movie.plot}</div>
+                <div className="flex flex-wrap justify-start gap-2 text-xs">
+                    <div className="btn">{movie.rated}</div>
+                    <div className="btn">{movie.year}</div>
+                    <div className="btn"><svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 12.5C2.6915 12.5 0 9.8085 0 6.5C0 3.1915 2.6915 0.5 6 0.5C9.3085 0.5 12 3.1915 12 6.5C12 9.8085 9.3085 12.5 6 12.5ZM6 1.5C3.243 1.5 1 3.743 1 6.5C1 9.257 3.243 11.5 6 11.5C8.757 11.5 11 9.257 11 6.5C11 3.743 8.757 1.5 6 1.5ZM6.25 6.933L7.982 5.933C8.2215 5.795 8.303 5.489 8.165 5.25C8.0265 5.0105 7.7205 4.928 7.482 5.067L6.5 5.634V3.5C6.5 3.2235 6.276 3 6 3C5.724 3 5.5 3.2235 5.5 3.5V6.5C5.5 6.6785 5.595 6.844 5.75 6.933C5.8275 6.9775 5.9135 7 6 7C6.0865 7 6.1725 6.9775 6.25 6.933Z" fill="white"/>
+                    </svg>{movie.runtime}</div>
+                </div>
+                <div className="flex justify-between gap-12 py-4.5">
+                    <div className="flex justify-between items-center gap-3 h-full">
+                        <div className="size-20 rounded-full p-6 bg-gradient-to-t from-[var(--accent-color)] to-[var(--interactive-color)] flex items-center justify-center text-2xl font-bold">
+                            <div className="bg-[var(--bg-color)] rounded-full p-4">
+                                {movie.imdb_rating}
+                            </div>
+                        </div>
+                        <div className="text-lg font-bold">{movie.imdb_votes} 
+                            <span className="opacity-60 block text-sm font-normal">ratings on IMDB</span></div>
+                    </div>''
+                    <div className="my-auto opacity-50 text-[13px]/6 font-normal">
+                        <div >{movie.ratings && 
+                            JSON.parse(movie.ratings)[1]?.Value} on {movie.ratings 
+                                && JSON.parse(movie.ratings)[1]?.Source}
+                        </div>
+                        <div >{movie.ratings &&
+                            JSON.parse(movie.ratings)[2]?.Value} on {movie.ratings
+                                && JSON.parse(movie.ratings)[2]?.Source}
+                        </div>
+                    </div>
+                </div>
+                <div className="details">
+                    <h2>Details</h2>
+                    <h3>Director</h3><span>{movie.director}</span>
+                    <h3>Writers</h3><span>{movie.writer}</span>
+                    <h3>Actors</h3><span>{movie.actors}</span>
+                    <h3>Country</h3><span>{movie.country}</span>
+                    <h3>Language</h3><span>{movie.language}</span>
+                    <h3>Awards</h3><span>{movie.awards}</span>
+                </div>
+                <img className="w-full rounded-2xl shadow-2xl" src = {movie.poster} alt={movie.title} height={637}/>
+                <button onClick = {()=>{}}>Add to Favorites</button>
             </div>
-            <div>{movie.ratings &&
-                 JSON.parse(movie.ratings)[2]?.Value} on {movie.ratings
-                 && JSON.parse(movie.ratings)[2]?.Source}
-            </div>
-            <div className="details">
-                <h2>Details</h2>
-                <h3>Director</h3><span>{movie.director}</span>
-                <h3>Writers</h3><span>{movie.writer}</span>
-                <h3>Actors</h3><span>{movie.actors}</span>
-                <h3>Country</h3><span>{movie.country}</span>
-                <h3>Language</h3><span>{movie.language}</span>
-                <h3>Awards</h3><span>{movie.awards}</span>
-            </div>
-            <button onClick = {()=>{}}>Add to Favorites</button>
-            </>
+        </div></div>
+        </>
+
         )
     }
 

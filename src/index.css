@@ -7,10 +7,14 @@
   min-width: 1vw;
   min-height: 1vh;
 
-  color: rgba(255, 255, 255);
-  background-color: #070D23;
-
+  
+  
+  --bg-color:  #070D23;
   --interactive-color: #222C4F;
+  --accent-color: #724CF9;
+  
+  background-color: var(--bg-color);
+  color: rgba(255, 255, 255);
 
 
   font-synthesis: none;

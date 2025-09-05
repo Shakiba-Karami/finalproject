@@ -9,11 +9,17 @@
 
 
 
-/* @layer components {
+@layer components {
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background-color: var(--interactive-color);
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
 
-} */
-
-
-
-
-
+};

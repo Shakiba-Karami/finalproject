@@ -1,4 +1,10 @@
-const FetchData = (url) => {
+const FetchData = (url, method = 'GET', payload = null) => {
+    const postData= {};
+    if (method === "POST" && payload) {
+    postData.method = "POST";
+    postData.headers = { "Content-Type": "application/json" };
+    postData.body = JSON.stringify(payload);
+    }
     return fetch(url)
             .then((response) => {
                 if (!response.ok)
