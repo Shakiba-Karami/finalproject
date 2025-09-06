@@ -8,7 +8,7 @@ const SignIn = () => {
 
 
     return (
-    <div className="w-90 h-fit absolute top-8 end-3 rounded-xl flex flex-col gap-5 bg-[var(--bg-color)]/80 shadow-xl/25 shadow-fuchsia-200 inset-shadow-s inset-shadow-neutral-50 ring-1 ring-indigo-400/20 py-5 px-2 text-sm">
+    <div className="w-90 h-fit absolute top-8 end-3 z-11 rounded-xl flex flex-col gap-5 bg-[var(--bg-color)]/80 shadow-xl/25 shadow-fuchsia-200 inset-shadow-s inset-shadow-neutral-50 ring-1 ring-indigo-400/20 py-5 px-2 text-sm">
         <h1>Sign in using Email & Password</h1>
         <input className="rounded-xl bg-[var(--interactive-color)] py-3 px-2 caret-(--accent-color) focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]" placeholder = 'Username or Email'></input>
         <input className="rounded-xl bg-[var(--interactive-color)] py-3 px-2 caret-(--accent-color) focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]" placeholder="Password"/>

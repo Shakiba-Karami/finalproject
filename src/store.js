@@ -8,6 +8,6 @@ export const store = configureStore({
     reducer: {
         list : listReducer,
         movie : movieReducer,
-        User : userReducer,
+        user : userReducer,
     }
 })

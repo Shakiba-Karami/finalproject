@@ -5,7 +5,8 @@ const userSlice = createSlice({
     initialState: {    
     data : {},
     loading : false,
-    error: null 
+    error: null ,
+    favorites: [],
     },
     reducers : {
         userLoading : (state) => {
@@ -20,8 +21,14 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
             },
+        userFavorites : (state, action) => {
+            if (state.favorites.find(fav => fav.id === action.payload.id)) {
+                state.favorites = state.favorites.filter(fav => fav.id !== action.payload.id);
+            } else {
+                state.favorites.push(action.payload);
+            }}
     }
 })
 
-export const {userLoading, userSignedIn, userSignInFailed} = userSlice.actions
+export const {userLoading, userSignedIn, userSignInFailed, userFavorites} = userSlice.actions
 export default userSlice.reducer

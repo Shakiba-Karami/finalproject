@@ -5,7 +5,7 @@ const DispatchList = (url) => async (dispatch) => {
     dispatch (listLoading() )
     try {
         const data = await FetchData(url);
-        dispatch(listDone(data.data))                 
+        dispatch(listDone(data))                 
     } catch (error) {
              dispatch(listFailed(error.message)) 
             }

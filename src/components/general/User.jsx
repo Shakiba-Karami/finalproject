@@ -1,8 +1,9 @@
+import SignIn from "./SignIn"
 
 const User = () => {
 
     return (
-            <button onClick = {()=> {}} className="group flex items-center p-2 bg-[var(--interactive-color)] size-10 rounded-xl fill-white hover:fill-[var(--accent-color)] cursor-pointer">
+            <button onClick = "()=> {}" className="group flex items-center p-2 bg-[var(--interactive-color)] size-10 rounded-xl fill-white hover:fill-[var(--accent-color)] cursor-pointer">
                     <svg className="fill-white/80 group-hover:fill-[var(--accent-color)]" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 256 256" enable-background="new 0 0 256 256" xml:space="preserve">
                     <g><g><path d="M127.8,146.9c-18.4,0-35.8-7.2-48.8-20.2c-13.1-13-20.2-30.4-20.2-48.8c0-18.4,7.2-35.8,20.2-48.8C92,16,109.3,8.8,127.8,8.8s35.8,7.2,48.8,20.2c13,13.1,20.2,30.4,20.2,48.8c0,18.4-7.2,35.8-20.2,48.8C163.5,139.7,146.2,146.9,127.8,146.9z M127.8,25.9c-28.7,0-52,23.3-52,52s23.3,52,52,52c28.7,0,52-23.3,52-52C179.7,49.2,156.4,25.9,127.8,25.9z"/>
                     <path d="M212.3,170.5c-10.9-10.9-23.6-19.5-37.7-25.5c-4.3-1.8-9.3,0-11.2,4.3c-2,4.4,0,9.5,4.5,11.4c12.2,5.2,23.1,12.5,32.5,21.9c9.4,9.4,16.7,20.3,21.9,32.5c3.4,8,5.7,16.3,6.9,24.8c0.6,4.2,4.2,7.3,8.4,7.3l0,0c5.2,0,9.2-4.6,8.5-9.7c-1.5-9.9-4.2-19.6-8.1-29C231.8,194.2,223.2,181.5,212.3,170.5z"/>

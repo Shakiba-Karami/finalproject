@@ -11,7 +11,7 @@ const Header = () => {
 
 
     return (<>
-    <header className="w-full sticky top-8 inset-x-3 z-10 grid grid-cols-3">
+    <header className="w-full sticky pt-8 px-3 z-10 grid grid-cols-3">
         <div className="col-start-1 flex justify-start">
             {path !== '/' && <BackButton/>}
         </div>
